@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
 
 
-	sprintf(fic1,"fichiers/mces.result");
+	sprintf(fic1,"fichiers/tanimoto.result");
 
 	F = fopen(fic1,"r");
 	if( F == NULL)
