@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	}
 
 
-	sprintf(fic2,"fichiers/cycles.result");
+	sprintf(fic2,"fichiers/tanimoto.result");
 
 	G = fopen(fic2,"r");
 	if( G == NULL)

@@ -64,7 +64,7 @@ void ecrire_resultat(int *mols, int pos1, int pos2,float sim1, float sim2, int i
 
 
 
-	sprintf(fic1,"Dossier/GM_GC_%d_%d.data", pos1,pos2);
+	sprintf(fic1,"Dossier/GM_TC_%d_%d.data", pos1,pos2);
 
 	F = fopen(fic1,"a");
 	if( F == NULL)
@@ -111,7 +111,7 @@ void ecrire_matrice_confusion(int ** matrice)
 
 
 
-	sprintf(fic1,"matrice_confusion.data");
+	sprintf(fic1,"matrice_confusion_GM_TC.data");
 
 	F = fopen(fic1,"w");
 	if( F == NULL)
