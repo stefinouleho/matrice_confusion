@@ -33,6 +33,7 @@ int **matrice_confusion(FILE *F, FILE *G,int *molecules, int taille)
 	//int nb_couples = 0;
 	for( i = 0; i < taille ; i++)
 	{
+		
 		for(j = 0; j < i; j++)
 		{
 			fscanf(F,"%f", &sim1);
@@ -123,7 +124,7 @@ void ecrire_matrice_confusion(int ** matrice)
 	for ( i = 0; i < NBVAL + 2; i++ )
 	{
 		for (  j= 0; j < NBVAL +1; j++ )
-			fprintf(F,"%5d ",matrice[i][j]);
+			fprintf(F,"%10d ",matrice[i][j]);
 		fprintf(F,"\n");
 	}
 
