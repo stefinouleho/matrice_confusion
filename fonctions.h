@@ -5,12 +5,16 @@
 #include <time.h>
 
 #define NBVAL 10
+#define MOLECULES 500
 #define PAS (1.0/NBVAL)
 
-void liberer_matrice(int ** matrice);
-int **matrice_confusion(FILE *F, FILE *G, int *molecules, int taille);
-int min (int a, int b);
-void affiche_matrice(int ** matrice);
+void liberer_matrice(int ** matrice, int taille);
+void affiche_matrice(int ** matrice, int taille);
 int * lecture_molecules(int taille);
-void ecrire_resultat(int *mols, int pos1, int pos2,float sim1, float sim2, int i,int j);
-void ecrire_matrice_confusion(int ** matrice);
+int ** lecture_fichier(FILE *F);
+int ** matrice_conf(int **M1, int **M2,int *mols, int cas);
+void ecriture_matrice ( int **MC, int cas);
+void fermeture_fichier_latex();
+void initialisation_fichier_latex();
+
+

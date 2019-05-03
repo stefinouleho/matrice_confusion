@@ -1,71 +1,64 @@
 #include "fonctions.h"
 
 
-
-int min (int a, int b)
+void liberer_matrice(int ** matrice, int taille)
 {
-	if (a < b)
-		return a;
-	return b;
+	int i;
+	for ( i = 0; i < taille; i++ )
+		free(matrice[i]);
+	free(matrice);
+
+
 }
-
-int **matrice_confusion(FILE *F, FILE *G,int *molecules, int taille)
+void affiche_matrice(int ** matrice, int taille)
 {
-
-	int **matrice = malloc( (NBVAL + 2) * sizeof(int *)); // +2 dans le cas de 1.0 et de similarite non calcule
-
 	int i,j;
-	for ( i = 0; i < NBVAL + 2; i++ )
-		matrice[i] = malloc( (NBVAL +1 ) * sizeof(int));
-
-
-	//initialisation de la matrice
-	for ( i = 0; i < NBVAL + 2; i++ )
+	printf("affichage de la matrice\n");
+	for ( i = 0; i < taille ; i++ )
 	{
-		for (  j= 0; j < NBVAL +1; j++ )
-			matrice[i][j] = 0;
+		for (  j= 0; j < taille ; j++ )
+			printf("%5d ",matrice[i][j]);
+		printf("\n");
 	}
-
-	//lecture des fichiers 
-
-	float sim1, sim2;
-	int pos1,pos2;// nb_couples = ((taille)*(taille + 1))/ 2;
-	//int nb_couples = 0;
-	for( i = 0; i < taille ; i++)
-	{
-		for(j = 0; j < i; j++)
-		{
-			fscanf(F,"%f", &sim1);
-			fscanf(G,"%f", &sim2);
-			//nb_couples++;
-			pos1 = (int)(sim1 * NBVAL);
-			pos2 = (int)(sim2 * NBVAL);
+	printf("fin de l'affichage de la matrice\n");
 
 
-			if(pos1 < 0)
-				pos1 = NBVAL +1;
-			if(pos2 < 0)
-				pos2 = NBVAL +1;
-			//printf("%f %f %d %d \n", sim1,sim2, pos1,pos2);
-			matrice[pos1][pos2]++;
-			ecrire_resultat(molecules, pos1,pos2, sim1,sim2 ,i,j);
 
-		}	
-		
-	}
-	//printf("nb nb_couples effectifs %d et attendu %d\n",nb_couples, ((taille)*(taille - 1))/ 2 );
-	//affiche_matrice(matrice);
-	return matrice;	
 }
-void ecrire_resultat(int *mols, int pos1, int pos2,float sim1, float sim2, int i,int j)
+
+int ** lecture_fichier(FILE *F)
+{
+	int **matrice = malloc( MOLECULES * sizeof(int *));
+	int i,j;
+	float sim;
+	for ( i = 0; i < MOLECULES; i++ )
+		matrice[i] = calloc( MOLECULES, sizeof(int));
+	
+	for( i = 0; i < MOLECULES -1 ; i++)
+	{
+		for(j = 0; j < i + 1 ; j++)
+		{
+			fscanf(F,"%f",&sim);
+			matrice[i + 1][j] = (int)(sim *10);
+			matrice[j][i + 1] = (int)(sim *10);
+		}
+	}
+	//affiche_matrice(matrice, MOLECULES);
+	return matrice;
+}
+
+
+void ecrire_resultat(int *mols,int cas, int pos1, int pos2,int i, int j)
 {
 	FILE *F;
 	char fic1[256];
 
-
-
-	sprintf(fic1,"Dossier/GM_GC_%d_%d.data", pos1,pos2);
-
+	if( cas ==1)
+		sprintf(fic1,"Dossier/GM_GC/GM_GC_%d_%d.data", pos1,pos2);
+	if( cas ==2)
+		sprintf(fic1,"Dossier/TC_GC/TC_GC_%d_%d.data", pos1,pos2);
+	if( cas ==3)
+		sprintf(fic1,"Dossier/GM_TC/GM_TC_%d_%d.data", pos1,pos2);
 	F = fopen(fic1,"a");
 	if( F == NULL)
 	{
@@ -73,33 +66,42 @@ void ecrire_resultat(int *mols, int pos1, int pos2,float sim1, float sim2, int i
 		exit(6);
 	}
 
-	fprintf(F, "%6d \t %6d \t %.2f \t %.2f\n", mols[i], mols[j],sim1,sim2);
+	fprintf(F, "%6d \t %6d\n", mols[i], mols[j]);
 
 	fclose(F);
 }
-void liberer_matrice(int ** matrice)
+
+int ** matrice_conf(int **M1, int **M2, int *mols, int cas)
 {
-	int i;
-	for ( i = 0; i < NBVAL + 2; i++ )
-		free(matrice[i]);
-	free(matrice);
 
-
-}
-
-void affiche_matrice(int ** matrice)
-{
+	int **matrice = malloc( (NBVAL + 1) * sizeof(int *)); 
 	int i,j;
-	for ( i = 0; i < NBVAL + 2; i++ )
+	for ( i = 0; i < NBVAL + 1; i++ )
+		matrice[i] = calloc( NBVAL + 1 , sizeof(int));
+
+	int nb_couples_effectif = 0;
+
+	for( i = 0; i < MOLECULES -1 ; i++)
 	{
-		for (  j= 0; j < NBVAL +1; j++ )
-			printf("%5d ",matrice[i][j]);
-		printf("\n");
+		for(j = 0; j < i + 1 ; j++)
+		{
+			if(M1[i + 1][j] >= 0 && M2[i + 1][j] >= 0)
+			{
+				//printf("%d %d \n",M1[i + 1][j],M2[i + 1][j]);
+				nb_couples_effectif++;
+				matrice[M1[i + 1][j]][M2[i + 1][j]]++;
+				ecrire_resultat(mols, cas,M1[i + 1][j],M2[i + 1][j],i,j);
+			}
+		}
 	}
-
-
-
+	//printf("nb couples effectif  : %d/%d et nbre de couples non effectif : %d/%d\n\n\n",nb_couples_effectif,(((MOLECULES -1) * (MOLECULES))/2),(((MOLECULES -1) * (MOLECULES))/2) - nb_couples_effectif,(((MOLECULES -1) * (MOLECULES))/2) );
+	//affiche_matrice(matrice, NBVAL + 1);
+	return matrice;
 }
+
+
+
+
 
 void ecrire_matrice_confusion(int ** matrice)
 {
@@ -164,4 +166,138 @@ int * lecture_molecules(int taille)
 
 	return mol;
 }
+
+
+void initialisation_fichier_latex()
+{
+
+	char fichier[256];
+	sprintf(fichier,"fichiers/tableau.tex");
+
+	FILE *F = fopen(fichier,"w");
+	if( F == NULL)
+	{
+		fprintf(stdout, "Cannot write the file %s\n", fichier);
+		exit(4);
+	}
+
+
+
+	fprintf(F, "\\documentclass[a4paper]{article}\n");
+
+	fprintf(F, "\\usepackage[utf8]{inputenc}\n");
+	fprintf(F, "\\usepackage[french]{babel}\n");
+	fprintf(F, "\\usepackage[T1]{fontenc}\n");
+
+	fprintf(F, "\\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}\n");
+
+
+	fprintf(F, "\\usepackage{graphicx}\n");
+	fprintf(F, "\\usepackage[colorlinks=true,linkcolor=blue]{hyperref}\n");
+	fprintf(F, "\\usepackage{longtable}\n");
+	fprintf(F, "\\usepackage{slashbox,pict2e}\n");
+	 
+	fprintf(F, "\\begin{document}");
+
+
+	
+
+
+	fclose(F);
+}
+
+
+
+void ecriture_matrice ( int **MC, int cas)
+{
+	char fichier[256];
+	sprintf(fichier,"fichiers/tableau.tex");
+
+	FILE *F = fopen(fichier,"a");
+	if( F == NULL)
+	{
+		fprintf(stdout, "Cannot write the file %s\n", fichier);
+		exit(4);
+	}
+
+	int i,j;
+	fprintf(F, "\\begin{center}\n");
+
+	fprintf(F, "\\vspace*{5mm}\n");
+
+	fprintf(F, "\\begin{longtable}{|c");
+	
+	for (i = 0; i <= NBVAL; i++)
+	{
+		fprintf(F, "|c");
+	}
+
+	fprintf(F, "|}\n \\hline \n");
+	if( cas == 1)
+		fprintf(F, "\\backslashbox{\\textbf{GM}}{\\textbf{GC}} ");
+	if( cas == 2)
+		fprintf(F, "\\backslashbox{\\textbf{TC}}{\\textbf{GC}} ");
+	if( cas == 3)
+		fprintf(F, "\\backslashbox{\\textbf{GM}}{\\textbf{TC}} ");
+
+	for (i = 0; i < NBVAL - 1; i++)
+	{
+		fprintf(F, "& \\textbf{[.%d,.%d[} ",i,i+1);
+	}
+
+	fprintf(F, "& \\textbf{[.9,1.0[} ");
+	fprintf(F, "&\\textbf{ = 1.0}");
+
+	fprintf(F, "\\\\ \n");
+	fprintf(F, "\\hline\n");
+
+
+	for( i = 0; i < NBVAL - 1;i++)
+	{
+		fprintf(F, "\\textbf{[.%d,.%d[} &",i,i+1);
+		
+		for( j = 0; j <  NBVAL;j++)
+		{
+			fprintf(F, "\\textbf{%d} &",MC[i][j]);
+		}
+		fprintf(F, "\\textbf{%d} \\\\ \\hline \n",MC[i][NBVAL]);
+
+	}
+	fprintf(F, "\\textbf{[.9,1.0[} &");
+	for( j = 0; j <  NBVAL;j++)
+	{
+		fprintf(F, "\\textbf{%d} &",MC[NBVAL-1][j]);
+	}
+	fprintf(F, "\\textbf{%d} \\\\ \\hline \n",MC[NBVAL-1][NBVAL]);
+
+	fprintf(F, "\\textbf{= 1.0} &");
+	for( j = 0; j <  NBVAL;j++)
+	{
+		fprintf(F, "\\textbf{%d} &",MC[NBVAL][j]);
+	}
+	fprintf(F, "\\textbf{%d} \\\\ \\hline \n",MC[NBVAL][NBVAL]);
+
+	fprintf(F, "\\end{longtable}\n");
+	fprintf(F, "\\end{center}\n");
+	fclose(F);
+	
+
+}
+void fermeture_fichier_latex()
+{
+
+	char fichier[256];
+	sprintf(fichier,"fichiers/tableau.tex");
+
+	FILE *F = fopen(fichier,"a");
+	if( F == NULL)
+	{
+		fprintf(stdout, "Cannot write the file %s\n", fichier);
+		exit(4);
+	}
+	fprintf(F, "\\end{document}\n" );
+	
+	fclose(F);
+}
+
 

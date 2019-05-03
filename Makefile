@@ -5,7 +5,6 @@ CXX = g++ -Wall -Wextra
 run: analyse
 	./analyse 
 
-
 val: analyse
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./analyse
 
@@ -24,5 +23,8 @@ clean:
 	rm -f similarite.distribution
 	rm -f *.o
 	rm -f *.data
-	rm  -f Dossier/*.data
+	rm  -rf Dossier/*
+	mkdir Dossier/GM_GC/
+	mkdir Dossier/TC_GC/
+	mkdir Dossier/GM_TC/
 
