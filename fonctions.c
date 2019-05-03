@@ -258,24 +258,24 @@ void ecriture_matrice ( int **MC, int cas)
 		
 		for( j = 0; j <  NBVAL;j++)
 		{
-			fprintf(F, "\\textbf{%d} &",MC[i][j]);
+			fprintf(F, "%d &",MC[i][j]);
 		}
-		fprintf(F, "\\textbf{%d} \\\\ \\hline \n",MC[i][NBVAL]);
+		fprintf(F, "%d \\\\ \\hline \n",MC[i][NBVAL]);
 
 	}
 	fprintf(F, "\\textbf{[.9,1.0[} &");
 	for( j = 0; j <  NBVAL;j++)
 	{
-		fprintf(F, "\\textbf{%d} &",MC[NBVAL-1][j]);
+		fprintf(F, "%d &",MC[NBVAL-1][j]);
 	}
-	fprintf(F, "\\textbf{%d} \\\\ \\hline \n",MC[NBVAL-1][NBVAL]);
+	fprintf(F, "%d \\\\ \\hline \n",MC[NBVAL-1][NBVAL]);
 
 	fprintf(F, "\\textbf{= 1.0} &");
 	for( j = 0; j <  NBVAL;j++)
 	{
-		fprintf(F, "\\textbf{%d} &",MC[NBVAL][j]);
+		fprintf(F, "%d &",MC[NBVAL][j]);
 	}
-	fprintf(F, "\\textbf{%d} \\\\ \\hline \n",MC[NBVAL][NBVAL]);
+	fprintf(F, "%d \\\\ \\hline \n",MC[NBVAL][NBVAL]);
 
 	fprintf(F, "\\end{longtable}\n");
 	fprintf(F, "\\end{center}\n");
