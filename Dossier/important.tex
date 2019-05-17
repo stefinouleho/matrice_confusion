@@ -1,0 +1,1198 @@
+% Template for PLoS
+% Version 3.5 March 2018
+%
+% % % % % % % % % % % % % % % % % % % % % %
+%
+% -- IMPORTANT NOTE
+%
+% This template contains comments intended 
+% to minimize problems and delays during our production 
+% process. Please follow the template instructions
+% whenever possible.
+%
+% % % % % % % % % % % % % % % % % % % % % % % 
+%
+% Once your paper is accepted for publication, 
+% PLEASE REMOVE ALL TRACKED CHANGES in this file 
+% and leave only the final text of your manuscript. 
+% PLOS recommends the use of latexdiff to track changes during review, as this will help to maintain a clean tex file.
+% Visit https://www.ctan.org/pkg/latexdiff?lang=en for info or contact us at latex@plos.org.
+%
+%
+% There are no restrictions on package use within the LaTeX files except that 
+% no packages listed in the template may be deleted.
+%
+% Please do not include colors or graphics in the text.
+%
+% The manuscript LaTeX source should be contained within a single file (do not use \input, \externaldocument, or similar commands).
+%
+% % % % % % % % % % % % % % % % % % % % % % %
+%
+% -- FIGURES AND TABLES
+%
+% Please include tables/figure captions directly after the paragraph where they are first cited in the text.
+%
+% DO NOT INCLUDE GRAPHICS IN YOUR MANUSCRIPT
+% - Figures should be uploaded separately from your manuscript file. 
+% - Figures generated using LaTeX should be extracted and removed from the PDF before submission. 
+% - Figures containing multiple panels/subfigures must be combined into one image file before submission.
+% For figure citations, please use "Fig" instead of "Figure".
+% See http://journals.plos.org/plosone/s/figures for PLOS figure guidelines.
+%
+% Tables should be cell-based and may not contain:
+% - spacing/line breaks within cells to alter layout or alignment
+% - do not nest tabular environments (no tabular environments within tabular environments)
+% - no graphics or colored text (cell background color/shading OK)
+% See http://journals.plos.org/plosone/s/tables for table guidelines.
+%
+% For tables that exceed the width of the text column, use the adjustwidth environment as illustrated in the example table in text below.
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+%
+% -- EQUATIONS, MATH SYMBOLS, SUBSCRIPTS, AND SUPERSCRIPTS
+%
+% IMPORTANT
+% Below are a few tips to help format your equations and other special characters according to our specifications. For more tips to help reduce the possibility of formatting errors during conversion, please see our LaTeX guidelines at http://journals.plos.org/plosone/s/latex
+%
+% For inline equations, please be sure to include all portions of an equation in the math environment.  For example, x$^2$ is incorrect; this should be formatted as $x^2$ (or $\mathrm{x}^2$ if the romanized font is desired).
+%
+% Do not include text that is not math in the math environment. For example, CO2 should be written as CO\textsubscript{2} instead of CO$_2$.
+%
+% Please add line breaks to long display equations when possible in order to fit size of the column. 
+%
+% For inline equations, please do not include punctuation (commas, etc) within the math environment unless this is part of the equation.
+%
+% When adding superscript or subscripts outside of brackets/braces, please group using {}.  For example, change "[U(D,E,\gamma)]^2" to "{[U(D,E,\gamma)]}^2". 
+%
+% Do not use \cal for caligraphic font.  Instead, use \mathcal{}
+%
+% % % % % % % % % % % % % % % % % % % % % % % % 
+%
+% Please contact latex@plos.org with any questions.
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+
+\documentclass[10pt,letterpaper]{article}
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+
+% amsmath and amssymb packages, useful for mathematical formulas and symbols
+\usepackage{amsmath,amssymb}
+
+% Use adjustwidth environment to exceed column width (see example table in text)
+\usepackage{changepage}
+
+% Use Unicode characters when possible
+\usepackage[utf8x]{inputenc}
+
+% textcomp package and marvosym package for additional characters
+\usepackage{textcomp,marvosym}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+% Use nameref to cite supporting information files (see Supporting Information section for more info)
+\usepackage{nameref,hyperref}
+\usepackage{hhline}
+\usepackage{diagbox,makecell}
+% line numbers
+\usepackage[right]{lineno}
+
+%retirer 
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+
+
+% ligatures disabled
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% color can be used to apply background shading to table cells only
+\usepackage[table]{xcolor}
+
+% array package and thick rules for tables
+\usepackage{array}
+
+% create "+" rule type for thick vertical lines
+\newcolumntype{+}{!{\vrule width 2pt}}
+
+% create \thickcline for thick horizontal lines of variable length
+\newlength\savedwidth
+\newcommand\thickcline[1]{%
+  \noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+  \cline{#1}%
+  \noalign{\vskip\arrayrulewidth}%
+  \noalign{\global\arrayrulewidth\savedwidth}%
+}
+
+% \thickhline command for thick horizontal lines that span the table
+\newcommand\thickhline{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+\hline
+\noalign{\global\arrayrulewidth\savedwidth}}
+
+
+% Remove comment for double spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+% Text layout
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in 
+\textheight 8.75in
+
+% Bold the 'Figure #' in the caption and separate it from the title/caption with a period
+% Captions will be left justified
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+\renewcommand{\figurename}{Fig}
+
+% Use the PLoS provided BiBTeX style
+%\bibliographystyle{plos2015}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+
+% Header and Footer with logo
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
+%\pagestyle{myheadings}
+\pagestyle{fancy}
+\fancyhf{}
+%\setlength{\headheight}{27.023pt}
+%\lhead{\includegraphics[width=2.0in]{PLOS-submission.eps}}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
+\lfoot{\today}
+
+%% Include all macros below
+
+\newcommand{\lorem}{{\bf LOREM}}
+\newcommand{\ipsum}{{\bf IPSUM}}
+
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+\newtheorem{lemme}{Lemma}
+\newtheorem{example}{Example}
+
+%% END MACROS SECTION
+
+
+\begin{document}
+\vspace*{0.2in}
+
+% Title must be 250 characters or less.
+\begin{flushleft}
+{\Large
+\textbf\newline{Computing the structural similarity of molecules by solving maximum common edge subgraph problem} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
+}
+\newline
+% Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
+\\
+Stéfi Nouleho Ilemo\textsuperscript{1,*},
+Dominique Barth\textsuperscript{1},
+Olivier David\textsuperscript{2},
+Franck Quessette\textsuperscript{1},
+Marc-Antoine Weisser\textsuperscript{3},
+Dimitri Watel\textsuperscript{4,5}
+\\
+\bigskip
+\textbf{1} DAVID, Department of Computer Science, University of Versailles Saint Quentin, Versailles, France
+\\
+\textbf{2} ILV, Department of Chemistry, University of Versailles, Versailles, France
+\\
+\textbf{3} LRI, CentraleSupelec, Paris-Saclay University, Evry, France
+\\
+\textbf{4} ENSIIE, Evry, France
+\\
+\textbf{5} SAMOVAR, Telecom SudParis, Evry, France
+\\
+\bigskip
+
+% Insert additional author notes using the symbols described below. Insert symbol callouts after author names as necessary.
+% 
+% Remove or comment out the author notes below if they aren't used.
+%
+% Primary Equal Contribution Note
+%\Yinyang These authors contributed equally to this work.
+
+% Additional Equal Contribution Note
+% Also use this double-dagger symbol for special authorship notes, such as senior authorship.
+%\ddag These authors also contributed equally to this work.
+
+% Current address notes
+%\textcurrency Current Address: Dept/Program/Center, Institution Name, City, State, Country % change symbol to "\textcurrency a" if more than one current address note
+% \textcurrency b Insert second current address 
+% \textcurrency c Insert third current address
+
+% Deceased author note
+%\dag Deceased
+
+% Group/Consortium Author Note
+%\textpilcrow Membership list can be found in the Acknowledgments section.
+
+% Use the asterisk to denote corresponding authorship and provide email address in note below.
+* stefi.nouleho-ilemo@uvsq.fr (SNI)
+
+\end{flushleft}
+% Please keep the abstract below 300 words
+\section*{Abstract}
+
+This paper focuses on determining the structural similarity of two molecules, \textit{i.e.}, the similarity of the interconnection all the elementary cycles in the corresponding molecular graphs. We propose and analyze here an algorithmic approach based on solving a Maximum Common Edge Subgraph (MCES) on graphs representing the interaction of cycles in a molecule. Using the ChEBI database, we compare the effectiveness of this approach in terms of structural similarity and computation time with two calculation of similarity of molecular graphs, one based on the MCES, the other on the use of fingerprints to measure Tanimoto coefficient. We also analyse the obtained structural similarity results for a selected subset of molecules.
+
+% Please keep the Author Summary between 150 and 200 words
+% Use first person. PLOS ONE authors please skip this step. 
+% Author Summary not valid for PLOS ONE submissions.   
+%\section*{Author summary}
+%Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+
+\linenumbers
+
+% Use "Eq" instead of "Equation" for equation citations.
+\section*{Introduction}
+\subsection*{Motivation}
+This article concentrates on algorithmic approaches to compute the structural similarity of pairs of molecules in large molecular databases. Indeed, in organic chemistry, when a new molecule is designed, it is necessary to determine chemical reactions that can be used to synthesize this target molecule from available compounds. Finding such chemical reactions consists usually in searching in a reaction database (such as REAXYS~\cite{reaxys} or ChEBI~\cite{chebi}) for a molecule that is structurally close to the target molecule. As it is sometimes proposed in various existing approaches (see~\cite{Birchall2011} and refs), we assume here that two molecules have a similar structure if they have a similar interconnection of elementary cycles (typically carbon cycles) of their molecular graphs. Thus, it is therefore a question of being able to algorithmically select molecules in a reaction database that are structurally similar to a target molecule, by considering representation of molecules by graphs well adapted to structural similarity.
+
+\subsection*{Background}
+We consider definitions and notations on graph theory from~\cite{Berge1963}. Considering a modeling of molecules by graphs~\cite{Gasteiger2003} or hypergraphs, several definitions and similarity approaches between molecules have already been studied~\cite{Raymond2002}, mainly due to the principle stating that structurally similar molecules are expected to display similar properties~\cite{Zager2008,Johnson1990}, or to help virtual screening for drug design~\cite{Eckert2007}. Two main approaches are considered to measure the similarity of structures of molecules, focusing on specific subgraph problems.
+The first approach considers the kernel pattern of molecular graphs or hypergraphs, \textit{i.e.}, the presence or not of small subgraphs (also called ”fingerprints”~\cite{Cereto2015,Bender2009}) belonging to a chosen set of patterns. Such fingerprints are based on cycles or trees, and they are  often related to the functional properties of molecules. This approach seems well suited to the classification of molecules according to the properties concerned~\cite{Grave2010,Gauzere2015}. It has provided efficient solutions to measure specific molecular similarities, in terms of complexity and performances, but the choice of a significant set of substructures to compare molecules, especially from a structural point of view, is oftenly a difficult problem~\cite{Birchall2011,Flower1998,Raymond2002}.
+
+The second approach considers the resolution of the problem of finding a Maximum Common Edge Subgraph~\cite{Raymond2002} (MCES) between two graphs. This problem is defined as follows. Considering two graphs $G = (V , E )$ and $G′ = (V ′, E′)$, the MCES problem consists in finding the maximum subgraph of $G$ (in terms of number of vertices and edges) being isomorphic to a subgraph of $G′$. This problem has been shown to be NP-complete~\cite{Raymond2002} and it is initially seen as a generalization of graph isomorphism, with different metrics evaluating the size of this subgraph compared to those of the two graphs to be compared~\cite{Faisal2007,Eckert2007,Zager2008,Akutsu2013}. When consider solving MCES problem to measure the structural similarity of molecular graphs, two limitations could occur. First, since the computation of a MCES is a NP-complete problem, thus the required computation time is exponential with respect to the number of vertices of the two graphs, which is a problem when considering comparing one molecule with all molecules in a database. Second, considering molecular graphs could provide a similarity measure not sufficiently focused on structural similarity (\textit{i.e.}, interconnection of elementary cycles of the two molecular graphs).
+
+Note that a last approach consists in measuring distances of weighted editions between two molecular graphs, an edition being an operation of adding or deleting a vertex or an edge in such a graph, or the label change of a vertex. These approaches are notoriously used in the field of bioinformatics~\cite{Neuhaus2007,Sayle2015}.
+
+\subsection*{Contribution}
+Taking into account the advantages and disadvantages of the two main approaches given above about evaluating structural similarity of molecules, we investigate here a new approach consisting in computing a MCES on graphs representing the interconnection of cycles of each molecule, \textit{i.e.}, with less vertices than their molecular graphs. We will in particular evaluate the performances of this approach in terms of efficiency and execution time by comparison with a MCES approach on molecular graphs~\cite{Raymond2002} and a fingerprint approach using Tanimoto coefficient~\cite{Tanimoto1960} on molecular graphs.
+
+As said above, the structure of a molecule can be seen as the interconnection of the cycles in the maximum $2$−connected induced subgraph of the molecular graph. A representation of the structure of a molecule based on its cycles has already been proposed and used to classify and characterize sets of molecules~\cite{Gauzere2013,Horvarth2004} and some open service libraries are usable to obtain specific cycles in molecular graphs~\cite{Florian2017}, but such a kind of representation have not yet been considered to evaluate structural similarity of molecules. To this purpose, we propose here to use a new definition of the graph of cycle of a molecule being more specific to an efficient computation  of structural similarities.  So, we consider an extension of a definition of a graph of cycles of a molecule given in~\cite{Vismara2000} modeling not only a relevant subset of cycles of the molecule but also their interconnection, whether they share vertices or not. Such a representation can also be seen as the extension of a reduction of the Markush structure of a molecule into a ring/non-ring reduction scheme leading to express the core structure of a molecule~\cite{Lynch1996}, for example to make classification~\cite{Gillet1991}. Our goal is to confirm that this definition of cycle graph corresponds sufficiently to the intuitive approach followed by a chemist, that the comparison of the graphs of cycles, based on a specific MCES approach, well corresponds to the targeted notion of structural similarity of molecules and that this approach avoids the questions and limitations of the two other approaches considered above.
+
+The rest of the paper is organized as follow. In Section dealing with methods, we give some preliminary definitions about graph theory and molecular graphs. We also define the graph of cycle of a molecule and propose an algorithm to efficiently obtain it for any given molecule. Then, in Section about results and discussion, we evaluate the performances of using such graph of cycles (in terms of time computation and pertinence) to measure the similarity of pairs of molecules and compare it to Tanimoto coefficient. 
+
+\section*{Methods}
+
+In this section, we first present some definitions of graph theory that will be used in the rest of the paper. Then we present the classic representation of molecules using molecular graphs. Finally we introduce the graph of cycles, a new representation based on the interconnection of cycles in molecules.
+
+\subsection*{Preliminaries about cycles in a graph}
+
+As said in the previous section, the structural part of a molecule on which we will focus on is mainly based on induced cycles. Thus, to model this structural part, we need first some preliminaries about cycles in graphs.
+
+We consider a simple and undirected labeled graph $G=(V,E)$ with $n = |V|$ the number of vertices and $m = |E|$ the number of edges in $E = \{e_1, e_2, ..., e_m\}$.
+
+ An elementary cycle $c$ can be represented by a vector $c = (e_1^c, e_2^c,...,e_m^c)$ where $e_i^c =1$ iff the edge $e_i$ belongs to $c$ otherwise $e_i^c= 0$. 
+
+The\textbf{ \textit{length of a cycle}} $c$ is the number of edges that belongs to the cycle $|c| = \sum\limits_{i=1}^m e_i^c$.
+
+\begin{definition} 
+Let us consider two cycles $c_1$ and $c_2$ in a graph $G$ with corresponding of vectors $c_{1}  =(e_{1}^{c_1},e_{2}^{c_1},...,e_{m}^{c_1})$ and $c_2 = (e_1^{c_2},e_2^{c_2},...,e_m^{c_2}) $. The \textbf{union of the cycles} $c_1$ and $c_2$, denoted by $c_{12} = c_1 \oplus c_2$ is a set of edges given by  $c_{12} = (e_1^{c_1} \oplus e_1^{c_2},e_2 ^{c_1}\oplus e_2^{c_2},...,e_m^{c_1}\oplus e_m^{c_2})$ where $\oplus$ is the XOR boolean operation on the $e_i^c$, assuming $0$ is false and $1$ is true.
+\end{definition} 
+
+Since  $c_1$ and $c_2$ are elementary cycles, then the union of $c_1$ and $c_2$ is an union of edge-disjoint cycles by definition of $\oplus$. A $2-$connected component is a maximal (in terms of inclusion) $k-$connected induced subgraph with $k \geq 2$. 
+
+An \textbf{isthmus} is an edge of $G$ whose deletion strictly increases its number of connected components. An edge is an isthmus if it is not contained in any cycle of $G$. An \textit{isthmus-free graph} is a graph that does not have any isthmus. If a graph $G$ has $p$ isthmus then its number of $2-$connected components is less or equal to $p$; each connected component of a bridgeless graph is $2-$edge-connected. The $2-$connected components in a graph are connected in $G$ by  isthmus-chains (a chain in which all edges are isthmus).
+
+ A {\bf generator} $\zeta$ of a graph $G$ is a set of cycles such that for each cycle $c$ of $G$ there is a set of cycles $c_1,c_2,...,c_k$ in $ \zeta $ such that $c = c_1 \oplus c_2 \oplus  ... \oplus c_k$. The weight of a generator is the sum of the lengths of its cycles. We denote $\zeta^i$ a generator of cycles with weight equal to or lower than $i$. A {\bf cycle basis} of $G$ is a minimal generator in terms of inclusion. A generator $\zeta$ of cycles contains cycles such that each edge which belongs at least to a cycle is represented. 
+ 
+A minimum cycle basis of $G$ is a cycle basis with a minimum weight.
+
+
+\subsection*{Molecular graph}
+
+A molecular graph is an undirected labeled graph $G=(V,E)$ encoding the structural and functional information of the molecule~\cite{Gasteiger2003}. The set of vertices $V$ of $G$ encodes atoms and the set of edges $E$ encodes the adjacency relationship between atoms in the molecule. Each vertex is labeled by the corresponding chemical element (for example C $=$ Carbon, H $=$ Hydrogen) and each edge is labeled by its type of covalent bond (single $-$, double $=$, triple, aromatic). Since hydrogen atoms can be connected at least to one atom, they can be omitted in the representation of a molecule since we know the valence of each atom (see Fig~\ref{fig1}). A molecular graph does not encode neither the relative spatial arrangement of atoms nor the distance between atoms.
+
+
+% Place figure captions after the first paragraph in which they are cited.
+\begin{figure}[!h]
+
+	%\includegraphics[width=0.9\columnwidth]{fig1.tiff}
+	\caption{
+		\bf{Dopamine and its molecular graph.} 
+		Different types of nodes according to atomic elements and different types of edges depending of the chemical bond in the molecule.}
+		\label{fig1}
+\end{figure}
+
+\subsection*{Representing the cyclic structure of a molecule}
+
+The purpose is to model an interconnection between the cyclic parts of the molecule from its  molecular graph. We assume that the cyclic part (\textit{i.e.}, the $k$-connected components with $k \geq 2$) describes the structure and the acyclic part describes chemical functions of the molecule, in particular its possible interaction with other molecules.  Thus, the cyclic structure of molecular graph is based on the interconnection of its induced cycles. 
+%The purpose here is to represent the cycles of a graph and their interconnection, but without generating all the elementary cycles as there can be an exponential number of such cycles.
+
+\subsubsection*{Canonical generator}
+
+
+In this subsection, we describe how to compute a canonical generator of cycles for a molecular graph. By canonical we mean that two isomorphic molecular graphs will produce the same generator. %and the relationship between its cycles. 
+
+
+In order to get a compact representation of the molecule cycles, we can use minimum cycle bases\cite{Horton1987} of the graphs. %To model the structural part of a molecule, we consider cycles in the related molecular graph. 
+
+For a graph we can have more than one minimum cycle basis. It may be difficult to choose a canonical cycle basis to represent the interconnection of cycles because of the non uniqueness of cycle basis in a graph (see Fig~\ref{fig2}). The goal is to compute similarity on graph of cycles (structural parts). So we need a canonical graph of cycles for each molecule, \textit{i.e.}, it has to be independent to the vertices labelling and the chosen algorithm to compute a minimum cycle basis. This is the reason why in the definition of graph cycles we are going to add cycles to a cycle basis in order to obtain a canonical generator.
+
+\begin{figure}[!h]
+	%\includegraphics[width=0.7\textwidth]{fig2.tiff}
+	\caption{\bf{A graph $G$, elementary cycles of $G$ and different minimum cycle basis of $G$.} 
+	A graph can have differents minimum cycle basis. From a minimum cycle basis, all elementary cycle of the graph can be generated. }
+	\label{fig2}
+\end{figure}
+
+The {graph of cycles} of a given molecular is a graph  modeling the interconnection of its elementary cycles. This definition is mainly based on the one proposed in~\cite{Vismara2000}.
+
+Vismara~\cite{Vismara1997} reported that the union of minimum cycle basis of the graph is a canonical generator and that the union of minimum cycle basis is the smallest canonical set of cycles which computes the cyclic structure of a graph and the number of cycles of the union of cycle basis can be exponential. The polynomial time algorithm (complexity of $O(\nu \times m^{3})$ where $\nu$ denotes the cyclomatic number) proposed by Vismara computes a compact representation of the potentially exponential-sized set of relevant cycles of a graph. It is said that, there is no algorithm to list all the cycles of the union of minimum cycle basis but for molecular graphs in particular, the compact representation can be replaced by the complete enumeration of the relevant cycles. In the following section we will introduce an algorithm to compute a canonical generator of a molecular graph.
+
+As we will see in Example~\ref{exp2} that in terms of similarity measurement, we will also have to fix an upper bound of the size of the cycles to be considered in graphs representing molecules. This is due to the fact that, some cycles with a length lower than $8$ are sometimes not part of the structural part of the molecule. It is why we introduce parameter $j$ in the next definition in order to allow or remove cycles for similarity.
+
+Now, we formally define a \textit{canonical generator} for a molecular graph: 
+
+\begin{definition}
+Let us consider a generator $\zeta$ and an integer $j$. The generator $\zeta$ is {\bf $j$-hierarchical} if the subset of cycles of $\zeta$ with length equal or lower than $j$ can generate all the cycles of length equal or lower than $j$ in $G$. A generator $\zeta$ is hierarchical iff $\zeta_j$ is $j-$hierarchical for every $j$. 
+\end{definition}
+
+
+We denote by $\zeta_j$ a $j$-hierarchical set of $\zeta$.
+
+\begin{lemme}
+A minimum cycle basis of any graph is hierarchical.
+\end{lemme}
+
+\begin{proof}
+\normalfont
+Let us consider a minimum cycle basis $B$. Assume that $B$ is not hierarchical \textit{i.e.} there is an integer $j$ such $B_j$ is not $j$-hierarchical. 
+
+Since $B_j$ is not $j-$hierarchical, then there is a cycle $c$ of length lower than or equal to $j$ which cannot be generated with $B_j$. Therefore the cycle $c$ does not belongs to $B$. 
+
+Since $B_j$ is a cycle basis, there is a set of cycles $\{c_1, c_2, ..., c_{\alpha}\}$ in $B$ with $ c = c_1 \oplus c_2 \oplus ... \oplus c_{\alpha -1 } \oplus c_{\alpha}$. Let us assume that $c_{\alpha}$ is a cycle of maximum length in the set \{$c_1, c_2, ..., c_{\alpha}$\}. Since $B_j$ does not generate $c$ then the size of $c_{\alpha}$ is greater than $j$.
+
+The binary operator $\oplus$ is commutative and associative, so $c_1 \oplus c_2 \oplus ... \oplus c_{\alpha -1 }\oplus c = c_{\alpha}$.
+We denote by $B'$ the set of cycles obtain by removing $c_{\alpha}$ and adding $c$ in $B$ (\textit{i.e.} $B' = B \backslash \{c_{\alpha}\}\cup \{c\} $). As $\{c_1, c_2, ..., c_{\alpha-1},c\} \subset B'$, $ c_{\alpha} = c_1 \oplus c_2 \oplus ... \oplus c_{\alpha -1 } \oplus c $ and $B$ a cycle basis, so is $B'$. The weight of the cycle basis $B'$ is $|B'| = |B| -|c_{\alpha}|+ | c| $. The weight of $B'$ is lower than the weight of $B$ (a contradiction because $B$ is a minimum cycle basis). Then $B$ is hierarchical.
+\end{proof}
+
+
+
+%Here, we compute such a generator by using a minimum cycle basis and adding additional cycles, to obtain a canonical generator.
+
+ To compute a cycle generator $\zeta_j$, we consider an algorithm with less complexity than the one used in~\cite{Vismara2000} the algorithm of determining all the bases of minimal cycles and to make them union. Even if the corresponding real complexity of such an approach can be realistic for molecules of reasonable sizes, it is not convenient to obtain the graph of cycles for all the molecules of a database as Chebi or Reaxys. Thus, let us consider a molecular graph $G=(V,E,w_V,w_E)$ that may be non connected. We called the structural graph of a molecular graph to be the maximum subgraph of $G$ without any vertex with a degree lower than $2$ in the subgraph. We first computes a minimum cycle basis $B=\{c_1,c_2,...,c_k  \}$  of  $G$ by executing the Horton algorithm~\cite{Horton1987} on each $2-$connected components of $G$. Then,  to obtain a canonical basis, for each pair $c_i, c_j$ of cycles in $B$, and for any elementary cycle $ c =  c_i \oplus c_j$ in $G$ and not in $B$ such that $|c| = max(|c_i|,|c_j|)$, we add $c$ in $B$. Finally, $\zeta_j$ is the set of all the cycles with a length less or equal  to parameter $j$ in $B$.
+  
+ The complexity of  the Horton algorithm~\cite{Horton1987}, with polynomial complexity  $O(n \times m^{3})$~\cite{Horton1987}. The complexity of the algorithm that compute a graph of cycle is lower than $O(n^2 \times m^{3})$.
+
+\subsubsection*{Exemple of graph of cycles for molecular graph}
+
+%This means that depending on the choosen algorithm to compute a minimum cycle basis and the vertex labelling, two isomorphic graphs may have different cycle basis as results. Thus, we cannot only refer to one cycle basis to decide on the similarity between molecules.
+
+Before defining formally the graph of cycles, we illustrate and explain how to compute a graph of cycles of a molecule on two different examples.
+
+\begin{example}
+\normalfont
+
+Let us consider the molecular graph of quinine, with $\{c_1, c_2, c_3, c_4, c_5\}$ a canonical generator containing $5$ cycles (see Fig~\ref{fig3}). These cycles are the vertices of the corresponding graph of cycle. In terms of similarity between molecules, when considering interaction between cycles in a molecular graph, it is important to distinguish cycles sharing some vertices (like cycles $c_1$ and $c_2$) and cycles linked by a path (like $c_2$ and $c_3$). This is why we consider two types of edges in the graph of cycle of a molecule. Firstly, the type $1$ is used for closed cycles \textit{i.e.} for cycles sharing at least one vertex in the molecular graph. Each edge of type $1$ has as label value the number of shared edges. For instance, the plain blue edges on Fig~\ref{fig3} are of type $1$. The edge between $c_1$ and $c_2$ is equal to $1$ because they have one bond in common. Secondly, the type $2$ is for cycles with a relationship than can be easily broken (more often the cycles are not closed in the molecular graph). Edges of type $2$ have as label value the length of a shortest path between the corresponding cycles in the molecular graph. For example, the dashed green edges on Fig~\ref{fig3} are of type $2$. Between $c_2$ and $c_3$, the value of the edge of type $2$ is $2$ (the length of a shortest path between an atom of $c_2$ and an atom of $c_3$ in the molecular graph.
+
+ 
+\begin{figure}[!h]
+	%\includegraphics[width=0.9\textwidth]{fig3.tiff}
+	\caption{\bf{Quinine, $2-$connected components, elementary cycles and graph of cycles of quinine.} 
+	From a graph, we obtain $2-$connected components by removing bridges. Then, using a minimum cycle basis, we build a graph of cycle  representing the interaction between cycles in a molecular graph.}
+	\label{fig3}
+\end{figure}
+\end{example}
+
+The next example illustrates why it can be necessary to upper bound the size of the cycles to be considered in the target molecular graph.
+
+\begin{example}
+\label{exp2}
+\normalfont
+ Let us focus on two molecules considered as structurally similar:strychnine and vomicine. Indeed, as it is illustrated in Fig~\ref{fig4}, if we consider all the sizes of cycles in the vomicine, the two molecular graphs appear to be not similar. But, if we do not consider the cycles of size $9$ in the vomicine molecular graph, then the two obtained graphs of cycles are similar. In fact these cycles of size $9$ aren't cycles involved in the structure of the molecule but rather a connection between the structural part of the molecule and an azote atom. When in this case, reducing the graphs of cycles to cycles with size lower than or equal to $7$ is relevant, and it will be the case in most cases. It is why we introduce parameter $j$ in the next definition in order to allow or remove cycles for similarity.
+
+\begin{figure}[!h]
+	%\includegraphics[width=0.7\textwidth]{fig4.tiff}
+	\caption{\bf{Similar molecules: Strychnine and Vomicine with their graph of cycles.} 
+	Strychnine and Vomicine are structurally similar then their graph of cycles have to be similar too. }
+	\label{fig4}
+\end{figure}
+\end{example}
+
+
+Let us now give the formal definition of a graph of cycles of a molecular graph $G$. Consider a cycle generator $\zeta$ of $G$. Our goal is to compute a graph $G^\zeta$ representing the interconnection between cycles of $G$.
+ 
+\subsubsection*{Formal definition of graph of cycles}
+
+\begin{definition}
+\label{graphcyclesdefinition}
+Let $G$ be  a molecular graph, an integer $j$ and $\zeta_j$  be a $j-$hierarchical generator of cycles in $G$. The \textbf{graph of cycles} of $G$ induced by $\zeta_j$ is denoted $G^{\zeta_j} = (V^{\zeta_j},E^{\zeta_j},\mu,\nu,\theta)$ with the edge-set $E^{\zeta_j} = E^{\zeta_j}_{1} \cup E^{\zeta_j}_{2}$.
+
+ \begin{itemize}
+ 
+ 	\item The vertex-set $V^{\zeta_j}$ is a $j-$hierarchical generator $\zeta_j$.
+ 	\item The edge-set $E^{\zeta_j}$ define the relationship between cycles of  $V^{\zeta_j}$ according to their proximity in $G$.
+ 	\begin{itemize}
+ 		\item $[c_1,c_2] \in E^{\zeta_j}_{1}$ iff $c_1$ and $c_2$ belong to the same $2-$connected components of $G$ and they have at least one common vertex.
+ 		\item $[c_1,c_2] \in E^{\zeta_j}_{2}$ iff  $c_1$ and $c_2$ belong to different  $2-$connected components and there is a path $p$ from a vertex of $c_1$ to a vertex of $c_2$ in $G$ such that all edges of $p$ does not belongs to a cycle in $V^{\zeta_j}$.
+ 	\end{itemize}
+ 	\item For each vertex $c \in V^{\zeta_j}, \mu(c)$ is the weight of the cycle $c$;
+ 	\item For each edge $e \in E^{\zeta_j}_k,$ $\nu(e)$ is the type of the edge $e$, $\nu(e)= k$;
+ 	\item For each edge $e= [c_1,c_2]  \in E^{\zeta_j}$, $\theta(e)$ is the distance from $c_1$ to $c_2$ in $G$. If $e \in E^{\zeta_j}_{1}$ then $\theta(e)$ is the number of common edges between $c_1$ and $c_2$ in $G$. If $c_1$ and $c_2$ just have one vertex in common then $\theta(e) = 0$. If $e \in E^{\zeta_j}_{1}$, then $\theta(e)$ is the length of a shortest path among all the shortest paths between any vertex of $c_1$ and any vertex of $c_2$ in $G$.
+ \end{itemize}
+\end{definition}
+
+In Example~\ref{fig3}, we have $\mu(c_1) = 6$ as the length of the cycle $c_1$, $\nu([c_1,c_2]) = 1$, $ \nu([c_2,c_3]) = 2$ and $\theta([c_2,c_3]) = 2$ (the smallest path from a vertex of $c_2$ to a vertex of $c_3$ in the molecular graph).
+
+
+% Results and Discussion can be combined.
+\section*{Results and discussion}
+
+In this section, we compare on real cases the performances of three   approaches to compute structural similarity of molecules  : two approaches using MCES one on the molecular graphs (MG), the other on graph of cycles (GC), and an approach dealing with molecular graphs  and based on fingerprints and using the Tanimoto coefficient~\cite{Tanimoto1960} (TC). We are going to show that GC allows to capture the structure similarity between molecules; that MG does not consider cycles when the structural part is concerned and the fact that GC and TC does not compute the same  kind of similarity even if the results are sometimes similar.
+
+\subsection*{Similarity using Maximum Commun Edge Subgraph (MCES)}
+
+
+
+About both MCES approaches,  the similarity measure we consider is defined as follows~\cite{Raymond2002}. Consider two molecular graphs $G_1=(V_1,E_1)$, $G_2=(V_2,E_2)$ and a function $\pi: V_1 \rightarrow {\P}(V_2)$. A commun edge subgraph of $G_ {1}$ and $G_ {2}$ is a subgraph $G_{1,2}=(V_{1,2},E_{1,2})$ common to $G_ {1}$ and $G_ {2}$, such that if $ v \ in V_1 $ and $ v '\ in V_2 $ correspond to a the same vertex of $H$ then $ v 'in \pi (v) $ ({\it i.e.}, function $ \pi $ models the possible correspondences between the vertices of the two graphs). Then,
+
+\begin{eqnarray}
+\mathrm{sim(G_{1},G_{2}) }= \frac{(|V _{12}| + |E _{12}| )^2 }{(|V _1| + |E_1| )\times (|V_2| + |E _2| )}
+\label{eq:mces}
+\end{eqnarray}
+
+where   $G_{1,2}=(V_{1,2},E_{1,2})$ is a maximum commun edge subgraph of  $G_ {1}$ and $G_ {2}$ maximizing $sim(G_{1},G_{2})$.
+
+In the two approaches GC and MG, $\pi$ function is defined as follows.
+
+On one hand, concerning  molecular graphs, the function $\pi$ maps atoms of the same type. On the other hand, considering two  graphs of cycles  $G^{\zeta_j}_1= (V^{\zeta_j}_1,E^{\zeta_j}_1)$ and $G^{\zeta_{j'}}_2= (V^{\zeta_{j'}}_2,E^{\zeta_{j'}}_2)$ of two molecules $M_1$ et $M_2$, mapping $\pi$ is defined such that  for any $v \in V^{\zeta_j}_1, \pi(v)= \{ v' | v' \in V^{\zeta_{j'}}_2$ \textit{and} $  | |v| -|v'|| \leq 0.2 *min (  |v|,|v'| )\}$. This function $\pi$ in graph of cycles allow two cycles to match if they have similar length. The value $0.2$ has been fixed experimentally.
+
+When considering cycle graphs,  the function $\mu$ indicates the length of each cycle; the function $\nu$  indicates the relation between each pair of  connected cycles (if they share vertices or not) and the function $\theta$ gives the label of edges between cycles (see Definition~\ref{graphcyclesdefinition}).
+
+%Considering some specific molecules in a chosen database, each one to be compared with all the other ones, we evaluate the performances of measuring molecular similarity by using the definition given in~\cite{Raymond2002}, on the one hand on molecular graphs (MG) and on the other hand on graphs of cycles (GC).
+
+\subsection*{Similarity using Tanimoto coefficient}
+
+The Tanimoto fingerprint approach we consider here~\cite{Tanimoto1960} has been used as an effective measure of intermolecular similarity. A fingerprint is a structure fragment or feature found within a structure; this approach considers a list of such predefined pattern. Each pattern that is present is represented without considering the number of occurrences. The Tanimoto coefficient $\sigma$ of two molecules $M_1$ and $M_2$ is
+
+\begin{eqnarray}
+\mathrm{\sigma}= \frac{F_{12}}{F_1 + F_2 - F_{12}}
+\label{eq:tanimoto}
+\end{eqnarray}
+
+where $F_1$ is the number of fragments in $M_1$, $F_2$ is the number of fragments in $M_2$, and $F_{12}$ is the number of common fragments to molecules $M_1$ and $M_2$.
+
+Tanimoto coefficient is based on the assumption that similar molecules have similar patterns. This metric does not take account of the connectivity while MCES calculation do; consequently, the two coefficients are not the same and do not compute exactly the same thing in a molecular graph.
+
+\subsection*{Data}
+
+The target database of molecules we consider here is a freely available dictionary of small molecular entities called Chemical Entities of Biological Interest ChEBI~\cite{chebi}. This database contains 90130 molecules.
+
+We first uniformly select a set $\cal M$ of 10,000 molecules among the molecules in ChEBI containing at least three cycles (so that the structural similarity has a meaning). We consider a subset ${\cal M}_S$ of $500$ molecules in $ \cal M $ whose molecules are also chosen uniformly.
+
+We   focus on three similarity methods : MCES on molecular graphs (MG), MCES on graphs of cycles (GC), and Tanimoto Coefficient (TC). Note that to make sure that the MG and GC methods compute the similarity on the structural part of molecules, we remove all the leaves and isthmus in all molecular graphs for MG before computing similarity. We  then calculate the similarity MG and TC for all the pairs of  molecules in ${\cal M}_S$ and the similarity MC for all the pairs of molecules in $ \cal M $.   Our first goal is to evaluate and compare the performances of the approaches MG, GC and TC on ${\cal M}_S$ from three points of view : the execution time required to calculate the measure of similarity for each pair of molecules, the capacity of each approach to distinguish the subset of pairwise  of  structurally  similar molecules (\textit{i.e.}, the ones having similar core structures) and finally the capacity of discriminating real similar, medium similar and not similar pairs of molecules. We then also analyse the sets of pairwise structurally similar molecules obtained from MC method in $ \cal M $.
+
+Finally, we select seven molecules in ${\cal M}_S$, pairwise not similar and which have different properties of   similarity: some have several homologous molecules in the ChEBI database and others not, some are similar to few non homologous molecules, others to many. For each such molecule, we consider the distributions of computed similarities in each of the three approaches upon all the $90130$ molecules in ChEBI, and we compare them to the pairwise similar subsets of molecules, induced by these three methods, to which it belongs to.
+
+The computation of MG and CG has been done on a cluster Intel(R) Xeon CPU E$5$-$260$ v$3$ $@2.40$GHz with $64$G of RAM. To find a maximum clique in a graph to solve MCES, we use a linear program resolved by SCIP~\cite{scip} (Solving Constraint Integer Programs). Because of the number of molecules in the database ($90130$ molecules, knowing that many other database are larger) and since the similarity calculation between two graphs may have an exponential runtime due to the NP-completeness of the problem MCES (indeed, finding a MCES requires to compute a maximum clique in the product graph of the linegraphs induced by the two considered graphs~\cite{Raymond2002}), we have to fix a maximum time of computation of similarity for each pair of molecules. This time depends on the size of the considered graphs (MG or GC), which is why the computation time GC is small compared to that of MG since a molecular graph contains more vertices than its cycle graph; this is particularly true when the molecules are similar since in this case the maximum clique is large. For example, if the maximum time for each similarity is $20$ seconds, then the whole computation requires $\pm 20$ days on the cluster to compare one molecule to all the other ones in ChEBI. As a consequence of the time limitation, some similarities are not computed for some pairs of molecules in the MG context. The source code is available in \nameref{S1_appendix}.
+
+For Tanimoto Coefficient (TC), we used the program developed in Chemistry Development Kit (CDK) available online \footnote{https://cdk.github.io}. The construction of the patterns is made in the application CDK from the molecular graph of the selected molecule.
+
+\subsection*{Computation times}
+
+We compare here the computation times of the three approaches MG, GC and TC. We consider first the  $124,750$ different pairs of molecules in  ${\cal M}_S$.
+
+%Because we are looking for structural similarity, we recursively remove atoms with bonds lower than $2$ in each molecule for MG computation before applying MCES. As a result, two molecules having a similarity degree of $1.0$ with this method will be also be totally similar at an atomic point of view. However we have fixed a higher bound of computing time to $20$ seconds due to the NP-completeness of MCES.
+
+For GC similarity, we do not upper bound the similarity computation time for each pair of molecules. We dissociate the computing time needed to compute the graph of cycles of each molecule (which has to be done only once for each molecule)   from the time needed to compute the  similarity with MCES.  We do similarly about TC, \textit{i.e.}, we also dissociate the time needed to first compute fingerprints from the one needed for similarity calculation.
+
+Table \ref{table1} shows that computing the similarity with MCES on GC is faster than MCES on MG. Less than $4\%$ of pairs of molecules can be computed with MG in $1$secondes/pair. However, $99,79\%$ and $100\%$ of them are computed  in less than $0.1$ second/pair respectively with GC and TC. 
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-0.75in}{0in} % Comment out/remove adjustwidth environment if table fits in text column.
+\centering
+\caption{
+{\bf Computation time (in seconds) of similarity with MCES on MG, GC and with Tanimoto Coefficient.}}
+
+\begin{tabular}{|p{1.5cm}|*{10}{@{\hskip.01mm}c@{\hskip.01mm}|}}
+
+\hline
+
+\backslashbox[1.95cm]{\tiny{Method}}{\tiny{Time(sec)}} &\textbf{[0.0,0.1[}&\textbf{[0.1,0.2[}&\textbf{[0.2,0.3[ } &\textbf{[0.3,0.4[ }&\textbf{[0.4,0.5[} &\textbf{[0.5,0.6[}&\textbf{[0.6,0.7}[&\textbf{[0.7,0.8[}&\textbf{[0.8,0.9[}&\textbf{[0.9,1.0[ }\\
+
+\hline
+
+\textbf{MG} & 0 & 70 & 178 & 343 & 283 & 673 & 855 & 767 & 1026 & 506 \\
+
+\hline
+
+\textbf{TC}  & 124750 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\textbf{GC}& 124491 & 192 & 41 & 9 & 8 & 2 & 4 & 0 & 0 & 0 \\
+
+\hline
+
+\Xhline{2pt}
+
+&\textbf{[1,2[}&\textbf{[2,3[}&\textbf{[3,4[} &\textbf{[4,5[}&\textbf{[5,6[}&\textbf{[6,7[}&\textbf{[7,8[}&\textbf{[8,9[}&\textbf{[9,10[}&\textbf{[10,11[ }\\
+
+\hline
+
+\textbf{MG}& 9066 & 7092 & 5837 & 5063 & 4281 & 3823 & 3361 & 3117 & 2854 & 2504 \\
+
+\hline
+
+\textbf{TC}& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\textbf{GC}& 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\Xhline{2pt}
+
+& \textbf{[11,12[}& \textbf{[12,13[} & \textbf{[13,14[ }&\textbf{[14,15[}& \textbf{[15,16[} & \textbf{[16,17[} & \textbf{[17,18[} &\textbf{[18,19[}&\textbf{[19,20[}&\textbf{ $>=$20} \\
+
+\hline
+
+\textbf{MG}& 2357 & 2101 & 2031 & 1910 & 1730 & 1538 & 1503 & 1390 & 1303 & 57188 \\
+
+\hline
+
+\textbf{TC}& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\textbf{GC}& 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\end{tabular}
+
+\begin{flushleft}Note that for MG, $45,48\%$ pairs of molecules where not computed because they were exceeding the maximum time allowed ($20$ seconds). Remind that concerning GC and TC we do not consider here the pre-processing time to compute graphs of cycles and fingerprints.
+
+\end{flushleft}
+
+\label{table1}
+
+\end{adjustwidth}
+
+\end{table}
+
+There is no pre-processing time needed on MCES with MG. The Table \ref{table2} present the pre-processing time for ${\cal M}$. $99,98\%$ fingerprints were computed in less than $0.1$ seconds each whereas $8,74\%$ of graph of cycles need more than $0.1$ seconds.
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-0.75in}{0in}  % Comment out/remove adjustwidth environment if table fits in text column.
+\centering
+\caption{
+{\bf Pre-processing time (in seconds) of graphs of cycles for GC and fingerprints for TC.}}
+
+\begin{tabular}{|p{1.5cm}|*{10}{@{\hskip.01mm}c@{\hskip.01mm}|}}
+
+\hline
+
+\backslashbox[1.95cm]{\tiny{Method}}{\tiny{Time(sec)}} &\textbf{[0.0,0.1[}&\textbf{[0.1,0.2[}&\textbf{[0.2,0.3[ } &\textbf{[0.3,0.4[ }&\textbf{[0.4,0.5[} &\textbf{[0.5,0.6[}&\textbf{[0.6,0.7}[&\textbf{[0.7,0.8[}&\textbf{[0.8,0.9[}&\textbf{[0.9,1.0[ }\\
+
+
+\hline
+
+\textbf{TC}  & 9998 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\textbf{GC}& 9126 & 436 & 113 & 58 & 29 & 37 & 26 & 15 & 10 & 11 \\
+
+\hline
+
+\Xhline{2pt}
+
+&\textbf{[1,2[}&\textbf{[2,3[}&\textbf{[3,4[} &\textbf{[4,5[}&\textbf{[5,6[}&\textbf{[6,7[}&\textbf{[7,8[}&\textbf{[8,9[}&\textbf{[9,10[}&\textbf{[10,11[ }\\
+
+\hline
+
+\textbf{TC}& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\textbf{GC}& 64 & 24 & 7 & 14 & 4 & 6 & 5 & 5 & 1 & 0 \\
+
+\hline
+
+\Xhline{2pt}
+
+& \textbf{[11,12[}& \textbf{[12,13[} & \textbf{[13,14[ }&\textbf{[14,15[}& \textbf{[15,16[} & \textbf{[16,17[} & \textbf{[17,18[} &\textbf{[18,19[}&\textbf{[19,20[}&\textbf{ $>=$20} \\
+
+\hline
+
+\textbf{TC}& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\textbf{GC}& 0 & 2 & 1 & 3 & 2 & 0 & 0 & 0 & 0 & 0 \\
+
+\hline
+
+\end{tabular}
+
+\begin{flushleft} Note that these pre-processing computation have to be done only once.
+
+\end{flushleft}
+
+\label{table2}
+
+\end{adjustwidth}
+
+\end{table}
+
+\subsection*{Compared similarities}
+
+%The two distributions of similarities on $100,000$ pairs of molecules in ChEBI computed by GC and Tanimoto are independent (with a correlation coefficient equals to $r = 0.07$). Thus, these two approaches does not provide similar results.
+
+We compare the results on structural similarities with MCES on MG, on GC and TC on the $124,750$ pairs of molecules in ${\cal M}_S$. 
+
+
+A confusion matrix is a performance measurement used in  machine learning classification~\cite{Santra2012}. We use it to measure whether the three methods give or not the same results.Table \ref{table3} gives the confusion matrix of GM and TC. Each row of the matrix represent the number of pairs in GM with a value of similarity that are distributed in different columns according to their value in TC.
+
+
+\begin{table}[!ht]
+%\begin{adjustwidth}{-2.25in}{0in} % Comment out/remove adjustwidth environment if table fits in text column.
+\centering
+\caption{
+{\bf Confusion matrices of GM and TC.}}
+
+\begin{tabular}{|p{1.5cm}|*{11}{@{\hskip.2mm}c@{\hskip.2mm}|}}
+
+ \hline
+
+\backslashbox[1.95cm]{\textbf{GM}}{\textbf{TC}} & \textbf{[.0,.1[} & \textbf{[.1,.2[} & \textbf{[.2,.3[} & \textbf{[.3,.4[} & \textbf{[.4,.5[} & \textbf{[.5,.6[} & \textbf{[.6,.7[} & \textbf{[.7,.8[} & \textbf{[.8,.9[} & \textbf{[.9,1.0[} &\textbf{ = 1.0}\\
+
+\hline
+
+\textbf{[.0,.1[} &1678 &1731 &259 &5 &0 &0 &0 &0 &0 &0 &0 \\ \hline
+
+\textbf{[.1,.2[} &2433 &6499 &2157 &63 &6 &0 &0 &0 &0 &0 &0 \\ \hline
+
+\textbf{[.2,.3[} &1399 &9638 &4642 &343 &50 &7 &4 &0 &0 &0 &0 \\ \hline
+
+\textbf{[.3,.4[} &593 &8343 &7187 &1379 &274 &90 &26 &5 &8 &0 &0 \\ \hline
+
+\textbf{[.4,.5[} &190 &3932 &5091 &1834 &652 &269 &97 &34 &6 &3 &1 \\ \hline
+
+\textbf{[.5,.6[} &53 &974 &1544 &1032 &486 &366 &186 &91 &30 &2 &0 \\ \hline
+
+\textbf{[.6,.7[} &10 &150 &245 &236 &242 &175 &161 &101 &37 &6 &0 \\ \hline
+
+\textbf{[.7,.8[} &2 &6 &15 &30 &26 &50 &62 &58 &39 &16 &0 \\ \hline
+
+\textbf{[.8,.9[} &0 &1 &10 &7 &8 &21 &31 &35 &22 &10 &1 \\ \hline
+
+\textbf{[.9,1.0[} &0 &0 &1 &0 &0 &0 &7 &5 &1 &1 &0 \\ \hline
+
+\textbf{= 1.0} &0 &0 &9 &0 &0 &8 &5 &4 &15 &23 &5 \\ \hline
+
+\end{tabular}
+
+\begin{flushleft} Confusion matrix of similarity on Molecular graphs (MG) and Tanimoto Coefficient (TC) on $67589$ pairs of molecules. All the pairs are not computed by MG according to the time limit fixed ($20$ seconds) are removed.The matrices of confusion of TC/GC and GM/GC are presented Appendix \nameref{S2_table}. % The two methods have a similar behavior in terms of similarity computation since the values ​​are mainly distributed on the diagonal of the matrix.
+
+\end{flushleft}
+
+\label{table3}
+
+%\end{adjustwidth}
+
+\end{table}
+We use ${\cal M}_S$ to evaluate a correlation between GC, TC and MG. In Fig~\ref{newfig}, we put in the map each experiment according to the similarity value obtained for each measurement pair. Looking at GM vs TC, we find that dots are aligned around the upper diagonal part. This indicates that TC and GM provide similarity values ​​quite close. There are less dots located in the left upper and right lower part, they shows pairs of molecules similar from TC but not similar from GC, vice versa.
+
+
+\begin{figure}[!h]
+	%\includegraphics[width=0.7\textwidth]{correlation.tiff}
+	\caption{\bf{Correlation between (a)GMvsTC, (b)GMvsGC and (c)TCvsGC} 
+We use ${\cal M}_S$ and we remove $57161$ pairs that were not computed after $20$ seconds.}
+	\label{newfig}
+\end{figure}
+
+GM and GC seems to have a lack or no correlation (dots are distributedin the space. However, there is a cluster of dots with low similarity values and straight lines of dots for some similarity values on GC. this is because GC similarity is a ratio between small subgraphs. The number of possible values for GC ​​is therefore smaller than for GM whose graph sizes are larger and for TC whose calculation is based on a large number of fingerprints sought. 
+
+We also observe in middle part of Fig~\ref{newfig} a lack of correlation between GM and GC are transposed on the right part of Fig~\ref{newfig}. The GC and TC measurements do not appear to be correlated either.
+%Approach TC is based on finding the presence or not of atomic patterns in a pair of molecules while MCES on MG finds a maximum common edge subgraph matching atoms and bonds types. However they tend to have most of time the same behavior on similarity calculation. 
+
+Moreover, we compute the correlation coefficient between the measurements. It is respectively $0.1662$ between GM and GC and $0.1676$ between GC and TC. This value close to zero indicates a low correlation between them. Conversely, the coefficient between GM and TS is $0.6028$. A coefficient  greater than $0.5$ indicates a strong correlation.
+
+
+Evaluating the similarity on ${\cal M}_S$ with MG took $15$ days. So, as MG and TC tend to classify pairs of molecules int the same way, we took ${\cal M}$ (near to $50$ millions pairs of molecules) to compare TC and GC. Table \ref{table4} is the matrix of confusion of TC and GC on ${\cal M}$.
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-1.25in}{0in} % Comment out/remove adjustwidth environment if table fits in text column.
+\centering
+\caption{
+{\bf Confusion matrix of TC and GC.}}
+
+\begin{tabular}{|p{1cm}|c|c|c|c|c|c|c|c|c|c|c|}}
+
+ \hline
+
+\backslashbox[1.5cm]{\textbf{TC}}{\textbf{GC}} & \textbf{[.0,.1[} & \textbf{[.1,.2[} & \textbf{[.2,.3[} & \textbf{[.3,.4[} & \textbf{[.4,.5[} & \textbf{[.5,.6[} & \textbf{[.6,.7[} & \textbf{[.7,.8[} & \textbf{[.8,.9[} & \textbf{[.9,1.0[} &\textbf{ = 1.0}\\
+
+\hline
+
+\textbf{[.0,.1[} &2098086 &1357516 &595708 &336076 &80188 &98966 &17215 &102408 &660 &1 &45395 \\ \hline
+
+\textbf{[.1,.2[} &9097068 &8085619 &2661111 &1400400 &301127 &481123 &44955 &417304 &1524 &0 &170023 \\ \hline
+
+\textbf{[.2,.3[} &7646191 &5063089 &2083353 &805793 &213752 &257548 &31931 &179596 &1886 &5 &60001 \\ \hline
+
+\textbf{[.3,.4[} &1635006 &1038478 &561520 &223229 &60341 &67434 &9740 &66390 &688 &3 &31877 \\ \hline
+
+\textbf{[.4,.5[} &467347 &298880 &221562 &98755 &31691 &41287 &4674 &48675 &555 &1 &31712 \\ \hline
+
+\textbf{[.5,.6[} &166688 &118032 &132009 &90406 &20376 &30049 &4311 &42683 &771 &5 &28033 \\ \hline
+
+\textbf{[.6,.7[} &66077 &53324 &77368 &66037 &14408 &23555 &5512 &40206 &1163 &3 &27965 \\ \hline
+
+\textbf{[.7,.8[} &16306 &18625 &35630 &31697 &11954 &14434 &6379 &26133 &1172 &4 &19365 \\ \hline
+
+\textbf{[.8,.9[} &2700 &3423 &9540 &14806 &4828 &7332 &4077 &19933 &822 &4 &18191 \\ \hline
+
+\textbf{[.9,1.0[} &210 &570 &1620 &3962 &1162 &1677 &1099 &6899 &360 &3 &21322 \\ \hline
+
+\textbf{= 1.0} &11 &30 &55 &87 &107 &114 &100 &191 &67 &2 &3553 \\ \hline
+
+
+
+ \end{tabular}
+
+\begin{flushleft} Confusion matrix of similarity on TC and GC on $49,995,000$ pairs of ${\cal M}$.
+
+\end{flushleft}
+
+\label{table4}
+
+\end{adjustwidth}
+
+\end{table}
+
+
+The correlation coefficient $0.1559$ remains low, which indicates that the two measures remain globally uncorrelated. Nevertheless, in order to have a good view in Fig~\ref{newfig2}, we aggregate data in steps of $0.1$ and normalize the values. In the left (or right) part of Fig ~\ref{newfig2}, the normalization is performed with respect to the total number of pairs with a given similarity according to the measurement of GC (or TC). 
+
+\begin{figure}[!h]
+	%\includegraphics[width=0.7\textwidth]{confusion.tiff}
+	\caption{\bf{(a)Confusion matrix normaliezed by TC and (b)Confusion matrix normaliezed by GC } 
+We see it as the conditional probability distribution: given a $x$ GC similarity value (resp., TC) and given a randomly selected pair of molecules whose GC similarity is $x$ (resp., TC), what is the probability that the similarity TC (or GC) is $y$?}
+	\label{newfig2}
+\end{figure}
+
+
+In Fig~\ref{newfig2}(a), we do not observ a correlation of the two metrics. When the conditional probability of TC knowing GC is fixed, the columns are similar. The difference in the two columns $[0.8, 0.9[$ and $[0.9, 1.0[$ can be explained by the small number of pairs with GC similarity in the range $[0.8; 1.0 [$, this may skew the distributions.
+
+ Fig~\ref{newfig2}(b) shows some links between the two measurements. First, when TC similarity is near to $1.0$ then GC similarity is also near to $1.0$. To the contrary, when it is weak for TC, it is also weak for GC. As for the intermediate values, there does not seem to be a clear pattern. There are two columns $[0.8, 0.9[$ and $[0.9, 1.0[$ containing almost no pairs. This is due to the operation of the GC measurement which tends to rarely give similarity over the interval $[0.8; 1.0 [$ (we also see it in Fig~\ref{newfig}(b) and (c).
+ 
+ 
+We also look at the variation of the connected components with a threshold on the similarity. Indeed for a threshold $\alpha \in [0,1[$, we build a graph by connecting all the pairs of molecules that have a similarity value greater than $\alpha$. Table \ref{table4} shows that with GC on ${\cal M}_S$ we have $24$ molecules that have the same structural part with a similarity equal to $1.0$. The $8$ molecules in GM with threshold $1.0$ are included in the $24$ pairs with similarity $1$ of GC. According to TC they will be in the same connected component of the graph obtained with a threshold $0.6$.
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-0.75in}{0in} % Comment out/remove adjustwidth environment if table fits in text column.
+\centering
+\caption{
+{\bf Connected components, size and density on MG,TC and GC on ${\cal M}_S$ depending on a fixed threshold.}}
+
+\begin{tabular}{|p{1.5cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|}
+
+ \hline
+
+& \multicolumn{3}{c|}{\textbf{Molecular Graph (MG)}}&\multicolumn{3}{c|}{\textbf{Tanimoto Coefficient (TC)}}&\multicolumn{3}{c|}{\textbf{Graph of Cycles(GC)}}\\ \hline
+
+\textbf{\footnotesize{Threshold}}& $\#$\textbf{\footnotesize{CC}}&\textbf{\footnotesize{Width}}&\textbf{\footnotesize{Density}}& $\#$\textbf{\footnotesize{CC}}&\textbf{\footnotesize{Width}}&\textbf{\footnotesize{Density}}& $\#$\textbf{\footnotesize{CC}}&\textbf{\footnotesize{Width}}&\textbf{\footnotesize{Density}}\\ \hline
+
+\textbf{1.0} &461 &8 &1.0 &492 &2 &1.0 &290 &24 &1.0 \\ \hline
+
+\textbf{0.9} &455 &8 &0.98 &437 &6&0.92&290 &24 &1.0 \\ \hline
+
+\textbf{0.8} &387&14&0.84&373&22&0.90&277&24&0.99 \\ \hline
+
+\textbf{0.7} &265&121&0.78&296&72&0.84&113&339&0.83 \\ \hline
+
+\textbf{0.6} &150&306&0.85&236&103&0.77&81&383&0.81 \\ \hline
+
+\textbf{0.5} &59&421&0.62&186&182&0.90&51&435&0.82 \\ \hline
+
+\textbf{0.4} &21&480&0.16&123&340&0.90&37&450&0.87 \\ \hline
+
+\textbf{0.3} &15&486&0.30&24&472&0.70&13&488&0.13 \\ \hline
+
+\textbf{0.2} &9&492&0.43&2&499&0.47&2&499&0.26 \\ \hline
+
+\textbf{0.1} &4&497&0.51&1&500&0.90&1&500&0.58 \\ \hline
+
+\textbf{0.0} &1&500&0.53&1&500&1.0&1&500&1.0 \\ \hline
+
+ \end{tabular}
+
+\begin{flushleft} On the three methods the number of connected components is low the threshold is lower than $0.8$. When the number of connected components in GC does not increase when the threshold is lower than $0.8$ this means that two molecules with a similarity on GC bigger than $0.8$ are structurally similar.
+
+\end{flushleft}
+
+\label{table4}
+
+\end{adjustwidth}
+
+\end{table}
+
+\subsection*{Graph of cycles and similarities}
+
+\subsection*{Selected molecules}
+
+Finally, we have  compared the three considered approaches  on seven selected molecules in ${\cal M}_S$ with different properties in terms of graph of cycles and similarities: Quinine, Strychnine, Cholesterol, Manzamine A, Docetaxel Anhydrous, Brevetoxin A and Amphotericin B. We focus here on these three last molecules  because they include all the results and behaviors found for the seven ones.
+
+
+\subsubsection*{Docetaxel Anhydrous}
+
+For this molecule, we see that that GC gives best results than MG according to similarity calculation and time requested. Docetaxel Anhydrous has a generator of cycles with different lengths ($4$, $6$ and $8$). The graph of cycles has $6$ vertices and it maximum connected subgraph with edges of type $1$ is the kernel of this molecule (see Fig~\ref{fig5}). 
+ 
+\begin{figure}[!h]
+	%\includegraphics[width=0.95\columnwidth]{fig5.tiff}
+	\caption{\bf{Molecular graph and graph of cycles of Docetaxel anhydrous. }
+	According to the definition of graph of cycles, we compute the graph of cycles of the molecule Docetaxel anhydrous.}
+	\label{fig5}
+\end{figure}
+ 
+  Here are the distributions of similarity on MG, GC and TC in Fig~\ref{fig6}:
+  
+ \begin{figure}[!h]
+	%\includegraphics[width=0.9\columnwidth]{fig6.tiff}
+	\caption{\bf{Distribution of similarity on Docetaxel Anydrous.}
+	From left to right: Distribution with molecular graphs (MG), graphs of cycles (GC) and Tanimoto Coefficient (TC)}
+	\label{fig6}
+ \end{figure}
+ 
+ According to the distribution of similarity on GC, $4$ categories of similar molecules can be extracted:
+ 
+ \begin{itemize}
+ 
+ \item $9$ molecules are totally similar to Docetaxel (they are isomers). In fact, they have exactly the same graph of cycles (see Fig~\ref{fig7}). 
+ \item $5$ molecules are partially similar; $2$ of them have a similarity degree equals to $0.81$ differ from Docetaxel only on $1-$connected part in MG. Their GC are subgraphs of the graph of cycles of Docetaxel, one cycle linked with an edge of type $2$ is missing.  The $3$ other molecules (with a degree of similarity of $0.78$) have the same structure as Docetaxel with more cycles. The GC of these molecules have GC of Docetaxel as subgraph of (they have one cycle more and two edges of type $2$).
+ \item $1$ molecule is the kernel of Docetaxel. The degree of similarity is $0.63$).
+ \item The rest of molecules with a degree lower than $0.45$ are not similar to the target molecule. 
+\end{itemize}  
+ 
+  \begin{figure}[!h]
+	%\includegraphics[width=0.9\textwidth]{fig7.tiff}
+	\caption{\bf{Three molecules similar to docetaxel with GC similarity.}
+	From left to right : (a) Baccatin III with a similarity of $0.81$, (b) Paclitaxel with a similarity of $0.78$ and (c) 10-deacetyl-2-debenzoylbaccatin III with a similarity of $0.63$}
+	\label{fig7}
+\end{figure}
+In the distribution on TC, there are more categories but the first molecules are the same that GC results (GC categories include one or more categories of TC). As similar molecules have the same structure, they also have the same patterns.
+  
+In the distribution of similarity on MG, we fixed $30$ seconds to compute the similarity of two molecules. Over $46846$ of $90130$ molecules where not computed (about  $51.9 \%$). None of the molecules in top $20$ are chemically similar to Docetaxel.
+
+ 
+ When considering the computing time, TC is the fastest ($150$ seconds), GC is the second with $1$ hour and the last is MG with $10$ days.
+
+ 
+
+\subsubsection*{Brevetoxine A}
+ 
+The structural part of Brevetoxine A is a chain a cycles. It particularity is the length of it cycles ($5$, $6$, $7$, $8$ and $9$) with two cycles sharing $0$ or $1$ common edge in the molecular graph. In this case, we see that GC and TC clearly haven't the same ranking. The similarity on GC rely on cycles and TC on patterns.
+ 
+\begin{figure}[!h]
+	%\includegraphics[width=0.9\textwidth]{fig8.tiff}
+	\caption{\bf{Molecular graph and graph of cycles of Brevetoxine A.}
+	According to the definition of graph of cycles, we compute the graph of cycles of the molecule Brevetoxine A.}	
+	\label{fig8}
+\end{figure}
+ 
+ The distribution of similarity of brevetoxin A are shown in the Fig~\ref{fig9}:
+ 
+\begin{figure}[!h]
+	%\includegraphics[width=0.9\columnwidth]{fig9.tiff}
+	\caption{\bf{Distribution of similarity on  Brevetoxine A.}
+	From left to right: Distribution with molecular graphs (MG), graphs of cycles (GC) and Tanimoto Coefficient (TC)}
+	\label{fig9}
+\end{figure}
+
+ In GC results, we have $3$ categories:
+ \begin{itemize}
+ 
+ \item $5 $ molecules are similar with a degree upper than $0.64$. They are member of the same family with Brevetoxin A.
+ \item $2$ molecules are similar with a degree equal to $0.47$ are partially similar. Their GCs are subgraphs of the GC of Brevetoxin A.
+ \item The rest of molecules with a degree of similarity lower than $0.4$ are not similar to Brevetoxin A.
+ \end{itemize}
+ 
+Fig~\ref{fig10} shows two molecules similar according to GC.
+ 
+\begin{figure}[!h]
+	%\includegraphics[width=0.9\columnwidth]{fig10.tiff}
+	\caption{\bf{Results of similarity for brevetoxine A on GC.}
+	(a) Ciguatoxin CTX3C with a similarity of $0.76$ (b)(4Z)-2,8:7,12:11,15:14,18:17,22-pentaanhydro-4,5,6,9,10,13,19,20,21-nonadeoxy-L-arabino-L-allo-L-allo-docosa-4,9,20-trienitol with a similarity of $0.47$. These two molecules share a structural part with Brevetoxin A. }
+	\label{fig10}
+\end{figure}
+ 
+ 
+ When we look at TC distribution, the molecule Archangelolide is similar to Brevetoxin A with a Tanimoto coefficient equals to $0.81$ (range $2$ over $90130$ molecules).This is due to the fact that Brevetoxin A does not have many patterns but each patterns occurs several times in the molecule. As a consequence, it affect the results of similarity of this Tanimoto because molecules may be similar without taking account of the number of occurences of patterns (appearing $10$ times is not the same than one time). This happen with many with other molecules (see Fig~\ref{fig11}):
+ 
+\begin{figure}[!h]
+	%\includegraphics[width=0.9\columnwidth]{fig11.tiff} 
+	\caption{\bf{Results of similarity for brevetoxine A on TC.}
+	(a) Archangelolide with a similarity of $0.81$ (b) Michaolide G with a similarity of $0.79$. These molecules does not have similar structure with Brevetoxin A. }
+	\label{fig11}
+\end{figure}
+
+
+For MG, the parameter of time was fixed to $40$ seconds. Over $43 237$ of $90 130$ molecules where not computed for MG ($47.9 \%$). The first molecule on top $20$ is not similar to Brevetoxine A and has a degree of similarity equals to $0.2$. 
+
+GC similarity give a better ranking of molecules according to the cycle structure. We observe that the $5$ first molecules with a degree lower than $0.5$ belongs to the same family of Brevetoxin A. Others are less similar to Brevetoxin A according to the cycle structure.
+
+
+\subsubsection*{Amphotericin B}
+ 
+ Amphotericin B has a particular cyclic structure so it minimum cycle basis contains $3$ cycles with a particular cycle of length $36$ (this cycle belongs to the structural part). The corresponding graph of cycles thus contains $3$ vertices  (Fig~\ref{fig12}).
+ 
+\begin{figure}[!h]
+	%\includegraphics[width=0.9\columnwidth]{fig12.tiff}
+	\caption{\bf{Amphotericin B molecular graph and its graph of cycles.}
+	According to the definition of graph of cycles, we compute the graph of cycles of the molecule Amphotericin B .}	
+	\label{fig12}
+\end{figure}
+
+The GC distribution of similarities concerns all the molecules of the database. This distribution given in Fig~\ref{fig13} shows $11$ molecules fully similar to the target one (degrees of similarity equal to $1$), and another distinguished set of molecules being partially similar to it (degrees of similarity equal to $0.7$ or to $0.6$). The other molecules can be considered as different from the target molecule (similarity lower than $0.5$). Thus, the calculation using cycle graphs clearly discriminates the molecules into three classes, which the molecular graph approach does not do. Moreover, MG approach does not succeed in calculating similarity degrees for several molecules classified as very similar by the GC approach ($50932$ over $90130$ molecules where not computed; that is $56.5 \%$). This is due to a too important running time needed; the computation is stop because of the upper bound ($20$ seconds). Indeed, the required computation time is far exceeding the imposed limit.  
+
+\begin{figure}[!h]
+	%\includegraphics[width=0.9\columnwidth]{fig13.tiff}  
+	\caption{\bf{Distribution of similarity on Amphotericin B.}
+	From left to right: Distribution with molecular graphs (MG), graphs of cycles (GC) and Tanimoto Coefficient (TC)}
+	\label{fig13}
+\end{figure}
+ 
+ Most of the totally similar molecules provided by the GC approach are either isomers of amphotericin B (amphotericin B methyl ester) or member of the same family (nystatin A1). Amphotericin belongs to the family of antifungal. The other fully similar molecules are not intuitively similar to amphotericin B considering their molecular graphs but the similarity in terms of cycle structure are chemically relevant 
+ (Fig~\ref{fig14}). The molecules with degree of similarity equal to $0.7$ in the GC distribution are the ones  such that their graph of cycles have the one of Amphotericin B as subgraph, and the molecules with degree of similarity $0.6$ are the ones which graph of cycles is the subgraph of the one of Amphotericin B. Note that these molecules are not discriminated in the MG and TC approach.
+
+ \begin{figure}[!h]
+	%\includegraphics[width=0.9\textwidth]{fig14.tiff}
+	\caption{\bf{Results of similarity for Amphotericin B on GC.} 
+	Nystatin A1 (ChEBI id $ 473992$) and Chivosazole A (ChEBI id $80057$) with a similarity of $1.0$. }
+	\label{fig14}
+\end{figure}
+
+Molecules similar to Amphotericin B according to TC are are also similar in GC except those where the cycle of length $36$ is replace by smaller ones (Fig~\ref{fig15}). This is because, on Amphoterin B there is same pattern repeated on this cycle and and due to the fact that Tanimoto does not capture the structure of the molecule. The molecule is actually with a coefficient upper than other molecules having structure closed to Amphotericin B.
+
+
+\begin{figure}[!h]
+	%\includegraphics[width=0.9\columnwidth]{fig15.tiff}
+	\caption{\bf{Molecule Rimocidine.}
+	Rimocidine (ChEBI id $80106$) on TC with a similarity of $0.93$.}
+	\label{fig15}
+\end{figure}
+
+
+\section*{Conclusion}
+
+ Solving MCES problems on  graphs of cycles thus provides a relevant approach for establishing the structural similarity of pairs of molecules. Indeed,   the analysis of the performances of the proposed approach on examples of CHEBI database molecules that have different properties of similarity with the other molecules of the database, shows its efficiency in terms of similarity computation and of computation time. The other two approaches considered for comparison are less discriminating in terms of computing pertinent structural similarity, when their execution time allows results to be obtained. Finally, the approach by comparing cycle graphs does not require any prior knowledge of structural motifs to be considered in particular to compare the structure of the molecules.
+
+An extension of the proposed approach would be to be able to set the size of the cycles (parameter $j$) according to the characteristics of the molecular graph. Indeed in many cases, taking into account cycles of too large size can distort the similarity measurement because these cycles do not reflect the core structure of the molecules, while in some other cases, taking into account of such cycles is necessary to take all the core structures into account. It seems that the differentiation between these two cases depends, at least in part, on topological properties of the molecular graph, which requires further studies. Finally, the use of other metrics of similarity than the resolution of the MCES problem, for example the use of an editing distance between the cycle graphs, could also be considered. 
+
+\section*{Supporting information}
+
+% Include only the SI item label in the paragraph heading. Use the \nameref{label} command to cite SI items in the text.
+\paragraph*{S1 Appendix.}
+\label{S1_appendix}
+
+{\bf Code Source} (DOCX).
+
+\paragraph*{S2 Table.}
+\label{S2_table}
+
+{\bf Matrices of confusion for similarity GM with GC and TC with GM on ${\cal M}_S$ } (DOCX).
+
+%\section*{Author contributions}
+%
+%
+%\textbf{Methodology} : Stéfi Nouleho Ilemo, Dominique barth, Olivier David, Franck Quessette, Marc-Antoine Weisser, Dimitri Watel
+%
+%\textbf{Software} : Stéfi Nouleho Ilemo, Dimitri Watel
+%
+%\textbf{Validation} : Stéfi Nouleho Ilemo, Dominique barth, Olivier David, Franck Quessette, Marc-Antoine Weisser, Dimitri Watel
+%
+%\textbf{Writing – Review  Editing} : Stéfi Nouleho Ilemo, Dominique barth, Olivier David, Franck Quessette, Marc-Antoine Weisser, Dimitri Watel
+%
+%
+
+\nolinenumbers
+
+% Either type in your references using
+% \begin{thebibliography}{}
+% \bibitem{}
+% Text
+% \end{thebibliography}
+%
+% or
+%
+% Compile your BiBTeX database using our plos2015.bst
+% style file and paste the contents of your .bbl file
+% here. See http://journals.plos.org/plosone/s/latex for 
+% step-by-step instructions.
+% 
+\begin{thebibliography}{10}
+
+\bibitem{reaxys}
+Reaxys.
+\newblock Accessed Nov, 2017.
+
+\bibitem{chebi}
+Chemical entities of biological interest (chebi).
+\newblock Accessed April 1, 2015.
+
+\bibitem{Birchall2011}
+K.~Birchall and V.~J. Gillet.
+\newblock {\em Reduced Graphs and Their Applications in Chemoinformatics},
+  pages 197--212.
+\newblock Humana Press, 2011.
+
+\bibitem{Berge1963}
+C.~Berge.
+\newblock Th\'eorie des graphes et ses applications.
+\newblock {\em Dunod}, 1963.
+
+\bibitem{Gasteiger2003}
+J.~Gasteiger.
+\newblock {\em Handbook of Chemoinformatics : From Data to Knowledge
+  (Representation of Molecular Structures)}.
+\newblock Wiley, 1 edition, 2003.
+
+\bibitem{Raymond2002}
+J.~W. Raymond, E.~J. Gardiner, and W.~Peter.
+\newblock Rascal: Calculation of graph similarity using maximum common edge
+  subgraphs.
+\newblock {\em The Computer Journal}, 45(6), 2002.
+
+\bibitem{Zager2008}
+L.~A. Zager and G.~C. Verghese.
+\newblock Graph similarity scoring and matching.
+\newblock {\em Applied Mathematics Letters}, 45(21):86--94, 2008.
+
+\bibitem{Johnson1990}
+M.~A. Johnson and G.~M. Maggiora.
+\newblock {\em Concepts and applications of molecular similarity}.
+\newblock The American Chemical Society, 1988.
+
+\bibitem{Eckert2007}
+H.~Eckert and J.~Bajorath.
+\newblock Molecular similarity analysis in virtual screening: foundations,
+  limitations and novel approaches.
+\newblock {\em Drug Discovery Today}, 12(5):225--233, 2007.
+
+\bibitem{Cereto2015}
+A.~Cereto-Massagu\'e, M.~J. Ojeda, C.~Valls, M.~Mulero, S.~Garcia-Vallv\'e, and
+  G.~Pujadas.
+\newblock Molecular fingerprint similarity search in virtual screening.
+\newblock {\em Methods}, 71:58 -- 63, 2015.
+
+\bibitem{Bender2009}
+B.~Andreas, J.~Jeremy~L., S.~Josef, S.~Sai C.~K., G.~Meir, and D.~John~W.
+\newblock How similar are similarity searching methods? a principal component
+  analysis of molecular descriptor space.
+\newblock {\em J. Chem. Inf. Model.}, 49(1), 2009.
+
+\bibitem{Grave2010}
+d.~G. Kurt and C.~F.
+\newblock Molecular graph augmentation with rings and functional groups.
+\newblock {\em J. Chem. Inf. Model.}, 50(9):1660--1668, 2010.
+
+\bibitem{Gauzere2015}
+G.~Benoit, B.~L., and V.~D.
+\newblock Graph kernels in chemoinformatics.
+\newblock {\em Quantitative Graph Theory Mathematical Foundations and
+  Applications, CRC Press}, pages 425--470, 2015.
+
+\bibitem{Flower1998}
+D.~Flower.
+\newblock On the properties of bit string-based measures of chemical
+  similarity.
+\newblock {\em Journal of Chemical Information and Computer Sciences},
+  38:379--386, 05 1998.
+
+\bibitem{Faisal2007}
+F.~Abu-khzam, N.~Samatova, M.~A.~Rizk, and M.~Langston.
+\newblock The maximum common subgraph problem: Faster solutions via vertex
+  cover.
+\newblock {\em IEEE/ACS International Conference on Computer Systems and
+  Applications}, pages 367--373, 2007.
+
+\bibitem{Akutsu2013}
+A.~Tatsuya and N.~Hiroshi.
+\newblock Comparison and enumeration of chemical graphs.
+\newblock {\em Comput Struct Biotechnol J.}, 5, 2013.
+
+\bibitem{Neuhaus2007}
+N.~Michel and B.~Horst.
+\newblock {\em Bridging the Gap Between Graph Edit Distance and Kernel
+  Machines}.
+\newblock World Scientific Publishing Co., Inc., 2007.
+
+\bibitem{Sayle2015}
+S.~Roger, M.~John, N.~O. Boyle, G.~Andrew~J., S.~Stefan, and G.~Darren~V.S.
+\newblock Chemical similarity based on graph edit distance:efficient
+  implementation and the challenges of evaluation.
+\newblock {\em 7th Joint Sheffield Conference on Chemoinformatics}, 2015.
+
+\bibitem{Tanimoto1960}
+D.~J. Rogers and T.~T. Tanimoto.
+\newblock A computer program for classifying plants.
+\newblock {\em Science}, 132(3434):1115--1118, 1960.
+
+\bibitem{Gauzere2013}
+G.~Benoit, B.~L., and V.~D.
+\newblock Relevant cycle hypergraph representation for molecules.
+\newblock {\em 9th IAPR-TC-15 Graph-Based Representations in Pattern
+  Recognition}, page 111, 2013.
+
+
+\bibitem{Horvarth2004}
+H.~T., G.~T., and W.~S.
+\newblock Cyclic pattern kernels for predictive graph mining.
+\newblock {\em KDD-2004 - Proceedings of the Tenth ACM SIGKDD International
+  Conference on Knowledge Discovery and Data Mining}, pages 158--167, 2004.
+
+\bibitem{Florian2017}
+N.~A. Florian~Flachsenberg and M.~Rarey.
+\newblock Ringdecomposerlib: An open-source implementation of unique ring
+  families and other cycle bases.
+\newblock {\em J. Chem. Inf. Model.}, 2(57):122--126, 2017.
+
+\bibitem{Vismara2000}
+P.~Vismara and C.~Laurenco.
+\newblock An abstract representation for molecular graphs.
+\newblock {\em Discrete Mathematics and Theoretical Computer Science},
+  51:343--366, 2000.
+
+\bibitem{Lynch1996}
+L.~Michael~F. and H.~John~D.
+\newblock The sheffield generic structures project - a retrospective review.
+\newblock {\em J. Chem. Inf. Comput. Sci.}, 36(5):930--936, 1996.
+
+\bibitem{Gillet1991}
+G.~Valerie~J., D.~Geoffrey~M., H.~John~D., L.~Michael~F., and D.~Winfried.
+\newblock Computer storage and retrieval of generic chemical structures in
+  patents. 13. reduced graph generation.
+\newblock {\em J. Chem. Inf. Comput. Sci.}, 31(2):260--270, 1991.
+
+
+\bibitem{Horton1987}
+H.~Joseph~D.
+\newblock A polynomial-time algorithm fo find the shortest cycle basis of a
+  graph.
+\newblock {\em SIAM Journal on Computing}, 16(2):358--366, 1987.
+
+\bibitem{Vismara1997}
+V.~Philippe.
+\newblock Union of all minimum cycle bases of a graph.
+\newblock {\em Electr. J. Comb.}, 4(1):73--87, 1997.
+
+\bibitem{scip}
+SCIP http://scip.zib.de/
+\newblock Accessed Nov, 2017.
+
+
+\bibitem{Santra2012}
+K.~Santra, A and Christy, Josephine.
+\newblock Genetic Algorithm and Confusion Matrix for Document Clustering
+\newblock {\em International Journal of Computer Science Issues}, 2012.
+
+\end{thebibliography}
+
+
+\end{document}
+
